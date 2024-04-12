@@ -1,8 +1,18 @@
+#import ways of talking to OS and CSV   
 import os
 import csv
-csvpath = os.path.join("./budget_data.csv")
-csvoutput = os.path.join("output.txt")
-with open('./budget_data.csv','r') as csvfile:
+
+# Define the file paths
+filepath = r'./PyBank/Resources/budget_data.csv'
+csv_file = 'budget_data.csv'
+output_file = 'output.txt'
+
+# Join the file paths
+csv_path = os.path.join(filepath, csv_file)
+output_path = os.path.join(filepath, output_file)
+
+# Open the CSV file
+with open(csv_path, 'r') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=",")
     csv_headers = next(csvreader)
-    print(csvheaders)
+    print(csv_headers)  
