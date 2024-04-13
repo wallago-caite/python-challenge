@@ -8,24 +8,33 @@ csvpath = "./budget_data.csv"
 # Open the CSV file
 with open(csvpath, 'r') as csvfile:
    csvReader = csv.reader(csvfile)
+
+#convert to a list and separate the header from the data
    csv_list = list(csvReader)
-   number_months = len(csv_list)
+   csv_data = csv_list[1:]
+   number_months = len(csv_data)
+ 
+#set the initial values for the for loop
    csv_header = csv_list[0]
    net_total = 0
-   net_total = sum(csv_list[1:])
-   
+   previous_profit_loss = 0
+   total_change = 0
+   greatest_increase = ["", 0]
+   greatest_decrease = ["", 0]
+
 #start that for loop iteration fun!
-   for row in csvlist:
-      net_total = net_total+ int(row[1])
+   for row in csv_data:
+#converts p&L strong to integer and sum em- row 1 is the second item in the list within the csv-read list thus 1
+      net_total = net_total + int(row[1])
 #converts p&L strong to integer and sum em- row 1 is the second item in the list within the csv-read list thus 1
 
+#print the total number of months (aka the total number of list data)
    print("Total Months:"," ",number_months)
-   Print("Total:"," ","net_total")
+   
+#print the total amount of profits and losses over the whole period
+   print("Total:"," ","net_total")
 
     
-
-    # loop through and find total months
-    # total amount of profit/losses over the whole period
     # average change over the whole period
     #greatest increase in profits date and amount over period
     # greatest decrease in profits date and amount over period
