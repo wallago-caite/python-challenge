@@ -9,13 +9,13 @@ csvpath = "./budget_data.csv"
 with open(csvpath, 'r') as csvfile:
    csvReader = csv.reader(csvfile)
 
-#convert to a list and separate the header from the data
+   #convert to a list and separate the header from the data
    csv_list = list(csvReader)
    csv_header = csv_list[0]
-   csv_data = csv_list[1]
+   csv_data = csv_list[1:]
    number_months = len(csv_data)
  
-#set the initial values for the for loop
+   #set the initial values for the for loop
    net_total = 0
    prior_profit_loss = 0
    total_change = 0
@@ -24,39 +24,49 @@ with open(csvpath, 'r') as csvfile:
    change = 0
 
 #start that for loop iteration fun! We start in csv_data because that is a list separated from the header row it contains only data
-   for row in csv_data:
-#converts p&L string to integer.  Sums the second items in the the list after this conversion
+for row in csv_data:
+   #converts p&L string to integer.  Sums the second items in the the list after this conversion
+   try:
       profit_loss = int(row[1])
-      net_total = net_total + profit_loss
+   except ValueError:
+      # Skip rows with non-numeric values
+      continue
+   net_total = net_total + profit_loss
 
-#find total average change by starting at row 2 (basically prior after 0) and finding change of 1 to 2, 2 to 3, 3 to 4, and summing these derivative #s
+   #find total average change by starting at row 2 (basically prior after 0) and finding change of 1 to 2, 2 to 3, 3 to 4, and summing these derivative #s
    if prior_profit_loss != 0:
-            change = profit_loss - prior_profit_loss
-            total_change = total_change + change
+      change = profit_loss - prior_profit_loss
+      total_change = total_change + change
 
-#find greatest increase $ decrease, remember that change is the change between points in the second column, so when that is calculated, we can compare to row 0, 1, 2, 3 etc
+   #find greatest increase $ decrease, remember that change is the change between points in the second column, so when that is calculated, we can compare to row 0, 1, 2, 3 etc
+      if change > greatest_increase[1]:         
             greatest_increase = [row[0], change]
-   elif change < greatest_decrease[1]:
+      elif change < greatest_decrease[1]:
             greatest_decrease = [row[0], change]
 
-#reset prior so that it is the new current profit loss
-prior_profit_loss = profit_loss
+   #reset prior so that it is the new current profit loss
+   prior_profit_loss = profit_loss
 
-#calculate the average profit
-average_change = total_change / number_months
-#print the total number of months (aka the total number of list data)
-   print("Total Months:"," ",number_months)
+#calculate the average profit note that number of months is based on the in between moment, so it will be -1 since month one is a given
+average_change = total_change / (number_months - 1)
 
-#print the total amount of profits and losses over the whole period
-   print("Total:"," ",net_total)
+#store as string print the grand totals to the terminal using string replacement C method
+output = """
+Total Months: %d
+Total: %d
+Average Change: %d
+Greatest Increase: %s
+Greatest Decrease: %s
+""" % (number_months,net_total,total_change, str(greatest_increase),str(greatest_decrease))
 
-#print average change over the whole period
-   print("Average Change:"," ",total_change)
+#print to the terminal
+print(output)
 
-#print greatest increase
-   print("Greatest Increase:"," ",greatest_increase)
+#make a file in my main
+output_file = "./output.txt"
 
-#print greatest decrease
-   print("Greatest Decrease:"," ",greatest_decrease)
+#open the file as writeable and write the output into the the txtfile  
+with open(output_file,'w') as txtfile:
+    txtfile.write(output)
 
-#export a txt file with the results
+#Celebrate!! Half the module is done!!!
