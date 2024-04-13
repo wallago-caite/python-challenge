@@ -52,6 +52,8 @@ average_change = total_change / (number_months - 1)
 
 #store as string print the grand totals to the terminal using string replacement C method
 output = """
+Financial Analysis
+------------------------
 Total Months: %d
 Total: %d
 Average Change: %d
