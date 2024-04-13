@@ -16,10 +16,11 @@ with open(csvpath, 'r') as csvfile:
    number_months = len(csv_data)
  
    #set the initial values for the for loop
+   total_votes = 0
    
 #start that for loop iteration fun! We start in csv_data because that is a list separated from the header row it contains only data
 for row in csv_data:
-
+    
 #total votes cast
 
 #list of candidates that received votes in column 1
@@ -29,7 +30,7 @@ for row in csv_data:
 #winner of the election based on popular vote
 
 #store as string print the grand totals to the terminal using string replacement C method
-output = """
+    output = """
 Election Results
 ------------------------
 Total votes: %d
