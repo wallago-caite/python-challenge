@@ -13,32 +13,13 @@ with open(csvpath, 'r') as csvfile:
    csv_list = list(csvReader)
    csv_header = csv_list[0]
    csv_data = csv_list[1:]
-   number_months = len(csv_data)
+   total_votes = len(csv_data)
  
    #set the initial values for the for loop
-   total_votes = 0
-   
-#start that for loop iteration fun! We start in csv_data because that is a list separated from the header row it contains only data
-for row in csv_data:
-    
-#total votes cast
-
-#list of candidates that received votes in column 1
-#percentage of votes each of these candidates received in column 2
-#Total number of volumes each candidate won in column 3
-
-#winner of the election based on popular vote
+   candidate_name = [item[2] for item in csv_data]
 
 #store as string print the grand totals to the terminal using string replacement C method
-    output = """
-Election Results
-------------------------
-Total votes: %d
-------------------------
-Candidates+%+totals: %d<< this may fail
-------------------------
-Winner: %s
-""" % (total_votes,candidates,winner)
+output = total_votes
 
 #print to the terminal
 print(output)
