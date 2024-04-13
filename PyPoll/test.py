@@ -44,27 +44,36 @@ for entry in csv_data:
 ######################################################
 #Results
 print("Election Results")
-print("------------------")
+print("--------------------")
 
 #total vote line
-print ("Total Votes")
-print (total_votes)
-print ("-----------------")
+print ("Total Votes: " + str(total_votes)) #have to string the votes in order to print with string
+
 
 # Find % and winner -- Print the total number of votes per candidate
+# requires finding the max votes and creating a list of winners or rather list of tests for winners 
 max_votes = 0
 winner_list = 0
 
-for i in range(len(candidates)):
+for i in range(len(candidates)): #dynamic range based on the number of unique candidates found above
    percentage = (votes[i] / total_votes) * 100
    candidate_percent.append(percentage)
    if votes[i] >max_votes:
       max_votes = votes[i]
-      winner_list = i
+      winner_list = i # resets the iteration 
 
-   print(candidates[i] + " " + str(votes[i]))
+print("--------------------")
+candidate_lines = []
+for i in range(len(candidates)): # if we don't make a range of candidates only the last one prints
+   candidate_line = candidates[i] + ": "+ str(round(candidate_percent[i], 3)) + "% " + "(" + str(votes[i]) + ")" #strings candidate line together
+   candidate_lines = candidate_lines + [candidate_line]   #add each candidate line to the list
 
+for line in candidate_lines:
+   print(line)
 
 # print winner line
+print("--------------------")
+print("Winner: " + candidates[winner_list])
+print("--------------------")
 
 #export to txt file
