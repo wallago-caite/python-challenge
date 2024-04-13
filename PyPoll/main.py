@@ -59,7 +59,7 @@ for i in range(len(candidates)): #dynamic range based on the number of unique ca
 # printing to an output line the candidate lines
 candidate_output = ""
 for i in range(len(candidates)):
-    candidate_line = candidates[i] + ": " + str(round(candidate_percent[i], 2)) + "% (" + str(votes[i]) + ")\n"
+    candidate_line = candidates[i] + ": " + str(round(candidate_percent[i], 3)) + "% (" + str(votes[i]) + ")\n"
     candidate_output = candidate_output + candidate_line
 
 #collate outputs
