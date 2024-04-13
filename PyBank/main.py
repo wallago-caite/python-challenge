@@ -12,7 +12,7 @@ with open(csvpath, 'r') as csvfile:
 #convert to a list and separate the header from the data
    csv_list = list(csvReader)
    csv_header = csv_list[0]
-   csv_data = csv_list[1:0]
+   csv_data = csv_list[1]
    number_months = len(csv_data)
  
 #set the initial values for the for loop
@@ -39,6 +39,11 @@ with open(csvpath, 'r') as csvfile:
    elif change < greatest_decrease[1]:
             greatest_decrease = [row[0], change]
 
+#reset prior so that it is the new current profit loss
+prior_profit_loss = profit_loss
+
+#calculate the average profit
+average_change = total_change / number_months
 #print the total number of months (aka the total number of list data)
    print("Total Months:"," ",number_months)
 
