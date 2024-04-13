@@ -9,9 +9,20 @@ csvpath = "./budget_data.csv"
 with open(csvpath, 'r') as csvfile:
    csvReader = csv.reader(csvfile)
    csv_list = list(csvReader)
+   number_months = len(csv_list)
+   csv_header = csv_list[0]
+   net_total = 0
+   net_total = sum(csv_list[1:])
+   
+#start that for loop iteration fun!
+   for row in csvlist:
+      net_total = net_total+ int(row[1])
+#converts p&L strong to integer and sum em- row 1 is the second item in the list within the csv-read list thus 1
 
-   for row in csv_list:
+   print("Total Months:"," ",number_months)
+   Print("Total:"," ","net_total")
 
+    
 
     # loop through and find total months
     # total amount of profit/losses over the whole period
