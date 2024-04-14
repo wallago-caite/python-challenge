@@ -13,6 +13,8 @@ with open(csvpath, 'r') as csvfile:
    csv_list = list(csvReader)
    csv_header = csv_list[0]
    csv_data = csv_list[1:]
+   
+   # total the number of months
    number_months = len(csv_data)
  
    #set the initial values for the for loop
@@ -33,7 +35,7 @@ for row in csv_data:
       continue
    net_total = net_total + profit_loss
 
-   #find total average change by starting at row 2 (basically prior after 0) and finding change of 1 to 2, 2 to 3, 3 to 4, and summing these derivative #s
+   #find total change by starting at row 2 (basically prior after 0) and finding change of 1 to 2, 2 to 3, 3 to 4, and summing these derivative #s
    if prior_profit_loss != 0:
       change = profit_loss - prior_profit_loss
       total_change = total_change + change
@@ -52,13 +54,13 @@ average_change = total_change / (number_months - 1)
 
 #store as string print the grand totals to the terminal using string replacement C method
 output = """
-Financial Analysis
-------------------------
-Total Months: %d
-Total: %d
-Average Change: %d
-Greatest Increase: %s
-Greatest Decrease: %s
+Financial Analysis\n
+------------------------\n
+Total Months: %d\n
+Total: %d\n
+Average Change: %d\n
+Greatest Increase: %s\n
+Greatest Decrease: %s\n
 """ % (number_months,net_total,total_change, str(greatest_increase),str(greatest_decrease))
 
 #print to the terminal

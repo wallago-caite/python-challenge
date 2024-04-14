@@ -64,14 +64,14 @@ for i in range(len(candidates)):
 
 #collate outputs
 output = """
-Election Results
-------------------------------
-Total Votes: %d
-------------------------------
-%s
-------------------------------
-Winner: %s
-------------------------------
+Election Results \n
+------------------------------\n
+Total Votes: %d\n
+------------------------------\n
+%s\n
+------------------------------\n
+Winner: %s\n
+------------------------------\n
 
 """ % (total_votes, candidate_output, candidates[winner_list],)
 
