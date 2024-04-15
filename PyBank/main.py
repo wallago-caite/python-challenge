@@ -3,7 +3,9 @@ import os
 import csv
 
 # Define the relative path to the CSV file
-csvpath = "./budget_data.csv"
+csvpath = "./Resources/budget_data.csv"
+
+# another way of doing this is : os.path.join("Resources","budget_data.csv")
 
 # Open the CSV file
 with open(csvpath, 'r') as csvfile:
@@ -11,7 +13,7 @@ with open(csvpath, 'r') as csvfile:
 
    #convert to a list and separate the header from the data
    csv_list = list(csvReader)
-   csv_header = csv_list[0]
+   csv_header = csv_list[0] #another way of doing this is csv_header = next(csvReader)
    csv_data = csv_list[1:]
    
    # total the number of months
@@ -25,22 +27,28 @@ with open(csvpath, 'r') as csvfile:
    greatest_decrease = ["", 0]
    change = 0
 
-#start that for loop iteration fun! We start in csv_data because that is a list separated from the header row it contains only data
+#start that for loop iteration fun! We start in csv_data because that is a list separated from the header row 
+# csv_data only contains only data
+
 for row in csv_data:
    #converts p&L string to integer.  Sums the second items in the the list after this conversion
    try:
       profit_loss = int(row[1])
-   except ValueError:
+   except ValueError:#kept getting zero-based error, so added an error check with GPT help... 
       # Skip rows with non-numeric values
       continue
    net_total = net_total + profit_loss
 
-   #find total change by starting at row 2 (basically prior after 0) and finding change of 1 to 2, 2 to 3, 3 to 4, and summing these derivative #s
+   #find total change by starting at row 2 
+   # (basically we finding prior_profit_loss after 0) and finding change of 1 to 2, 2 to 3, 3 to 4etc
+   # this sums these derivative #s of the original data points
    if prior_profit_loss != 0:
       change = profit_loss - prior_profit_loss
       total_change = total_change + change
 
-   #find greatest increase $ decrease, remember that change is the change between points in the second column, so when that is calculated, we can compare to row 0, 1, 2, 3 etc
+   #find greatest increase $ decrease
+   #remember that change is the change between points in the second column
+   # so when that is calculated, we can compare to row 0, 1, 2, 3 etc
       if change > greatest_increase[1]:         
             greatest_increase = [row[0], change]
       elif change < greatest_decrease[1]:
@@ -62,14 +70,16 @@ Average Change: %d\n
 Greatest Increase: %s\n
 Greatest Decrease: %s\n
 """ % (number_months,net_total,total_change, str(greatest_increase),str(greatest_decrease))
+#another way of doing this is with an FSTRING f' with these inside of the code  
 
 #print to the terminal
 print(output)
 
 #make a file in my main
-output_file = "./output.txt"
+output_file = "./analyis/output.txt"
 
 #open the file as writeable and write the output into the the txtfile  
+# another way of doing this is : os.path.join("Resources","budget_data.csv")
 with open(output_file,'w') as txtfile:
     txtfile.write(output)
 
