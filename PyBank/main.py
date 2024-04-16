@@ -8,7 +8,7 @@ csvpath = "./Resources/budget_data.csv"
 # another way of doing this is : os.path.join("Resources","budget_data.csv")
 
 # Open the CSV file
-with open(csvpath, 'r') as csvfile:
+with open(csvpath, 'r') as csvfile: # csvreader has a (csv, 'r' UTF<<path code that fixes coding errors)
    csvReader = csv.reader(csvfile)
 
    #convert to a list and separate the header from the data
@@ -58,7 +58,7 @@ for row in csv_data:
    prior_profit_loss = profit_loss
 
 #calculate the average profit note that number of months is based on the in between moment, so it will be -1 since month one is a given
-average_change = total_change / (number_months - 1)
+average_change = round(total_change / (number_months - 1))
 
 #store as string print the grand totals to the terminal using string replacement C method
 output = """
@@ -66,21 +66,21 @@ Financial Analysis\n
 ------------------------\n
 Total Months: %d\n
 Total: %d\n
-Average Change: %d\n
+Average Change: $%d\n
 Greatest Increase: %s\n
 Greatest Decrease: %s\n
-""" % (number_months,net_total,total_change, str(greatest_increase),str(greatest_decrease))
+""" % (number_months,net_total,average_change, str(greatest_increase),str(greatest_decrease))
 #another way of doing this is with an FSTRING f' with these inside of the code  
 
 #print to the terminal
 print(output)
 
-#make a file in my main
+#make a file in my subsidiary folder
 output_file = "./analyis/output.txt"
 
 #open the file as writeable and write the output into the the txtfile  
 # another way of doing this is : os.path.join("Resources","budget_data.csv")
-with open(output_file,'w') as txtfile:
+with open(output_file,'w') as txtfile: #can also add to a text file with an "encoding" parameter
     txtfile.write(output)
 
 #Celebrate!! Half the module is done!!!
