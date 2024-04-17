@@ -58,7 +58,7 @@ for row in csv_data:
    prior_profit_loss = profit_loss
 
 #calculate the average profit note that number of months is based on the in between moment, so it will be -1 since month one is a given
-average_change = round(total_change / (number_months - 1))
+average_change = total_change / (number_months - 1)
 
 #store as string print the grand totals to the terminal using string replacement C method
 output = """
@@ -66,17 +66,18 @@ Financial Analysis\n
 ------------------------\n
 Total Months: %d\n
 Total: %d\n
-Average Change: $%d\n
+Average Change: $%.2f\n
 Greatest Increase: %s\n
 Greatest Decrease: %s\n
-""" % (number_months,net_total,average_change, str(greatest_increase),str(greatest_decrease))
-#another way of doing this is with an FSTRING f' with these inside of the code  
+""" % (number_months,net_total,round(average_change,2), str(greatest_increase),str(greatest_decrease))
+#another way of doing this is with an FSTRING f' with these inside of the code .  
+#Challenge of the average chnage rounding is that we were using s or d, and that converted it to an integer.
 
 #print to the terminal
 print(output)
 
 #make a file in my subsidiary folder
-output_file = "./analyis/output.txt"
+output_file = "./analysis/output.txt"
 
 #open the file as writeable and write the output into the the txtfile  
 # another way of doing this is : os.path.join("Resources","budget_data.csv")
