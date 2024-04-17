@@ -3,7 +3,7 @@ import os
 import csv
 
 # Define the relative path to the CSV file
-csvpath = "./election_data.csv"
+csvpath = "./Resources/election_data.csv"
 
 # Open the CSV file
 with open(csvpath, 'r') as csvfile:
@@ -79,7 +79,7 @@ Winner: %s\n
 print(output)
 
 #make a file in my main
-output_file = "./output.txt"
+output_file = "./analysis/output.txt"
 
 #open the file as writeable and write the output into the the txtfile  
 with open(output_file,'w') as txtfile:

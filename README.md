@@ -16,3 +16,6 @@ PyBank- line 29-34 ChatGPT testing for error due to 0 value or string in the sec
 PyBank- line 54-62 learnpython.org %s/%sd exercise + discussion with ChatGPT on why greatest increase/ decrease were not considered integers 
 
 PyPoll- line 60, 63, 76 line help from ChatGPT on how to collate the 3-line output within a string using string format and not formulas. took the idea of storing candidate output within the loop as a new variable instead of printing within the loop. 
+
+PyPoll- input and output paths help from Tuncay Dogan during office hours.  
+
