@@ -22,22 +22,22 @@ with open(csvpath, 'r') as csvfile:
 # find the max total number of votes for that candidate
 
 #find initial values
-candidate_votes = []
-candidate_percent = []
+candidate_votes = []#list starting at zero   
+candidate_percent = []#list starting at zero
 candidate_location = [2] #where candidate is within the row (or rather list item)
 candidates = [] #list of  candidates
 
 
 for entry in csv_data:
-   candidate = entry[2] #candidate is at 3rd index location
+   candidate = entry[2] #candidate is at 3rd index location 3-1 = 2
    if candidate not in candidates:
       candidates= candidates + [candidate] #add new unique candidate to list of candidates. 
 
 #vote count for each candidate starts at 0
-votes = [0] * len(candidates)
+votes = [0] * len(candidates) #votes are a list
 
 for entry in csv_data:
-   candidate = entry[2]
+   candidate = entry[2] #entries are a list
    index = candidates.index(candidate)
    votes[index] = votes[index] +1
 
@@ -49,6 +49,7 @@ for entry in csv_data:
 max_votes = 0
 winner_list = 0
 
+#set up like vba lottery winning
 for i in range(len(candidates)): #dynamic range based on the number of unique candidates found above
    percentage = (votes[i] / total_votes) * 100
    candidate_percent.append(percentage)
@@ -74,6 +75,7 @@ Winner: %s\n
 ------------------------------\n
 
 """ % (total_votes, candidate_output, candidates[winner_list],)
+#can also be done as an f-string..... probably a better solution but if it ain't broke.... 
 
 #print to the terminal
 print(output)
